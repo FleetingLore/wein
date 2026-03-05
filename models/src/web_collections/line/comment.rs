@@ -2,7 +2,7 @@
 
 use crate::core::line::Line;
 use crate::core::lore::Lore;
-use crate::web_collections::error::LoreError;
+use crate::core::error::LoreError;
 
 pub struct Comment<'a> { pub indent: usize, pub docs: Lore<'a>, }
 

@@ -1,7 +1,7 @@
 // src/models/empty.rs
 
 use crate::core::line::Line;
-use crate::web_collections::error::LoreError;
+use crate::core::error::LoreError;
 
 /// 表示一个空行或只有空格的行
 ///
