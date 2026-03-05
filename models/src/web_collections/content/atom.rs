@@ -19,8 +19,8 @@ impl<'a> Content<'a> for AtomContent<'a> {
 }
 
 impl<'a> From<&'a str> for AtomContent<'a> {
-    fn from(input: &'a str) -> Self {
-        Self { content: input.into() }
+    fn from(raw: &'a str) -> Self {
+        Self { content: raw.into() }
     }
 }
 

@@ -1,9 +1,9 @@
 // src/web_collections/title.rs
 
+use crate::web_collections::line::traits::title::Title;
 use crate::core::line::Line;
 use crate::core::lore::Lore;
 use crate::core::error::LoreError;
-use crate::web_collections::traits::title::Title;
 
 pub struct TitleLine<'a> { pub indent: usize, pub title: Lore<'a> }
 

@@ -3,7 +3,7 @@
 use crate::core::line::Line;
 use crate::core::lore::Lore;
 use crate::core::error::LoreError;
-use crate::web_collections::traits::link::Link;
+use crate::web_collections::line::traits::link::Link;
 
 pub struct LinkLine<'a> { pub indent: usize, pub info: Lore<'a>, pub url: Lore<'a> }
 

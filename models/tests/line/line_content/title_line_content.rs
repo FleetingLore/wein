@@ -1,38 +1,38 @@
 use models::core::content::Content;
-use models::web_collections::content::title::TitleContent;
+use models::web_collections::content::title::CommentContent;
 
 #[test]
 fn test_new_atom_line() {
-    let a = TitleContent::new("example content");
+    let a = CommentContent::new("example content");
     assert_eq!(a.title, "example content");
 }
 
 #[test]
 fn test_get_content() {
-    let a = TitleContent::new("example content");
+    let a = CommentContent::new("example content");
     assert_eq!(a.get_content(), "+ example content");
 }
 
 #[test]
 fn test_from_1() {
-    let a = TitleContent::from("+ example title");
+    let a = CommentContent::from("+ example title");
     assert_eq!(a.title, "example title");
 }
 
 #[test]
 fn test_from_2() {
-    let a = TitleContent::from("example title");
+    let a = CommentContent::from("example title");
     assert_eq!(a.title, "[ ? ]");
 }
 
 #[test]
 fn test_default() {
-    let a = TitleContent::default();
+    let a = CommentContent::default();
     assert_eq!(a.title, "default title");
 }
 
 #[test]
 fn test_display() {
-    let a = TitleContent::new("example title");
+    let a = CommentContent::new("example title");
     assert_eq!(format!("{}", a), "+ example title");
 }
