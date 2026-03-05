@@ -1,2 +1,5 @@
 [book]
 title = "wein document"
+
+[output.html]
+base = "/wein/"
