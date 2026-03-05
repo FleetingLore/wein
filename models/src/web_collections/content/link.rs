@@ -33,6 +33,19 @@ impl<'a> Link<'a> for LinkContent<'a> {
     }
 }
 
+impl<'a> From<&'a str> for LinkContent<'a> {
+    fn from(raw: &'a str) -> Self {
+        if let Some((info, url)) = raw.split_once(" = ") {
+            Self { info, url }
+        } else {
+            Self {
+                info: raw,
+                url: "[ ? ]",
+            }
+        }
+    }
+}
+
 impl Default for LinkContent<'_> {
     fn default() -> Self { Self::new("default info", "default url") }
 }

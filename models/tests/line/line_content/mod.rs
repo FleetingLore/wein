@@ -1,3 +1,4 @@
-mod atom_line_content;
-mod title_line_content;
-mod comment_line_content;
+pub mod atom_content;
+pub mod title_content;
+pub mod comment_content;
+pub mod link_content;
