@@ -1,0 +1,2 @@
+createSrcSidebar('[["cli",["",[],["main.rs"]]],["html",["",[],["lib.rs"]]],["models",["",[["core",[],["category.rs","content.rs","empty.rs","error.rs","line.rs","lore.rs","mod.rs"]],["web_collections",[["content",[],["atom.rs","mod.rs","title.rs"]],["line",[],["atom.rs","comment.rs","link.rs","mod.rs","title.rs"]],["traits",[],["link.rs","mod.rs","title.rs"]]],["mod.rs"]]],["lib.rs"]]],["parser",["",[],["lib.rs"]]]]');
+//{"start":19,"fragment_lengths":[27,28,314,30]}

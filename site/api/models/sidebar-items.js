@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["core","web_collections"]};
