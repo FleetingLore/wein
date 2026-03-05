@@ -26,7 +26,7 @@ impl<'a> From<&'a str> for AtomContent<'a> {
 
 impl Default for AtomContent<'_> {
     fn default() -> Self {
-        Self { content: "" }
+        Self { content: "default content" }
     }
 }
 

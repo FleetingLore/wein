@@ -22,7 +22,7 @@ fn test_from() {
 #[test]
 fn test_default() {
     let a = AtomContent::default();
-    assert_eq!(a.content, "");
+    assert_eq!(a.content, "default content");
 }
 
 #[test]
