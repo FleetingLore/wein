@@ -1,4 +1,4 @@
-// src/core/empty.rs
+// src/models/empty.rs
 
 use crate::core::line::Line;
 use crate::web_collections::error::LoreError;
