@@ -15,7 +15,7 @@ impl LinkLore {
     }
 }
 
-impl Into<String> for LinkLore {
+impl Into<String> for &LinkLore {
     fn into(self) -> String {
         format!(
             "{} = {}",
@@ -50,7 +50,7 @@ mod tests {
             "example info".to_string(),
             "example category".to_string()
         );
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "example info = example category",
             example
@@ -59,7 +59,7 @@ mod tests {
         let example = LinkLore::from(
             "example info = example category".to_string()
         );
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "example info = example category",
             example)

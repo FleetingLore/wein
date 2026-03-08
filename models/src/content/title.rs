@@ -13,7 +13,7 @@ impl Title {
     }
 }
 
-impl Into<String> for Title {
+impl Into<String> for &Title {
     fn into(self) -> String {
         format!("+ {}", self.content)
     }
@@ -37,7 +37,7 @@ mod tests {
         let example = Title::new(
             "example content".to_string()
         );
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "+ example content", 
             example
@@ -46,7 +46,7 @@ mod tests {
         let example = Title::from(
             "+ example content".to_string()
         );
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "+ example content", 
             example

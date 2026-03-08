@@ -5,15 +5,30 @@ pub struct Line {
     pub indent: usize,
 }
 
-/*
-impl Display for Line {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+impl std::fmt::Display for Line {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}{}",
-            "  ".repeat(self.indent),
-            "  " // TODO
+               "  ".repeat(self.indent),
+               {
+                   let content = match &self.content {
+                       LineContent::Empty(line) => "".to_string(),
+                       LineContent::BreakLine(line) => "---".to_string(),
+                       LineContent::Atom(line) => line.into(),
+                       LineContent::Comment(line) => line.into(),
+                       LineContent::Title(line) => line.into(),
+                       LineContent::LinkLore(line) => line.into(),
+                       LineContent::LinkMd(line) => line.into(),
+                       LineContent::LinkHtml(line) => line.into(),
+                       LineContent::Default => "".to_string(),
+                   };
+                   content
+               }
         )
     }
 }
+
+/*
+
 */
 
 /*

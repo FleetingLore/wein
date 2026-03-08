@@ -1,6 +1,3 @@
-use crate::content::br::BreakLine;
-use crate::content::empty::Empty;
-
 /// 余项
 pub mod atom;
 
@@ -26,8 +23,9 @@ pub mod br;
 pub mod empty;
 
 pub enum LineContent {
-    Empty(Empty),
-    BreakLine(BreakLine),
+    Empty(empty::Empty),
+    BreakLine(br::BreakLine),
+    Atom(atom::Atom),
     Title(title::Title),
     Comment(comment::Comment),
     LinkLore(link_lore::LinkLore),

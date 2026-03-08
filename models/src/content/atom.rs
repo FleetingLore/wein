@@ -13,9 +13,9 @@ impl Atom {
     }
 }
 
-impl Into<String> for Atom {
+impl Into<String> for &Atom {
     fn into(self) -> String {
-        self.content
+        self.content.clone()
     }
 }
 
@@ -36,12 +36,12 @@ mod tests {
     fn test_content() {
         let example = Atom::new(
             "example content".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!("example content", example);
 
         let example = Atom::from(
             "example content".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!("example content", example);
     }
 }

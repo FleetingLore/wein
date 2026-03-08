@@ -1,3 +1,5 @@
+mod from_lore_to_html;
+
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }

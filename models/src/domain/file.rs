@@ -1,8 +1,18 @@
+use std::fmt::{Display, Formatter};
 use crate::domain::line::Line;
 
 pub struct File {
     pub name: String,
     pub lines: Vec<Line>
+}
+
+impl Display for File {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        for line in self.lines.iter() {
+            write!(f, "{}", line)?;
+        }
+        Ok(())
+    }
 }
 
 /*

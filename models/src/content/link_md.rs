@@ -15,7 +15,7 @@ impl LinkMd {
     }
 }
 
-impl Into<String> for LinkMd {
+impl Into<String> for &LinkMd {
     fn into(self) -> String {
         format!(
             "{} > {}",
@@ -49,7 +49,7 @@ mod tests {
         let example = LinkMd::new(
             "example info".to_string(),
             "example md".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "example info > example md",
             example
@@ -58,7 +58,7 @@ mod tests {
         let example = LinkMd::from(
             "example info > example md".to_string()
         );
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "example info > example md",
             example

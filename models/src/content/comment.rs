@@ -13,7 +13,7 @@ impl Comment {
     }
 }
 
-impl Into<String> for Comment {
+impl Into<String> for &Comment {
     fn into(self) -> String {
         format!("# {}", self.content)
     }
@@ -36,12 +36,12 @@ mod tests {
     fn test_content() {
         let example = Comment::new(
             "example content".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!("# example content", example);
 
         let example = Comment::from(
             "# example content".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!("# example content", example);
     }
 }

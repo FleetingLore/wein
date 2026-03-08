@@ -9,7 +9,7 @@ impl Empty {
     }
 }
 
-impl Into<String> for Empty {
+impl Into<String> for &Empty {
     fn into(self) -> String {
         "".to_string()
     }
@@ -29,11 +29,11 @@ mod tests {
     #[test]
     fn test_new() {
         let example = Empty::new();
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!("", example);
 
         let example = Empty::from("".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!("", example);
     }
 }

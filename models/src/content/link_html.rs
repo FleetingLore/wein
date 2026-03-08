@@ -15,7 +15,7 @@ impl LinkHtml {
     }
 }
 
-impl Into<String> for LinkHtml {
+impl Into<String> for &LinkHtml {
     fn into(self) -> String {
         format!(
             "{} | {}", 
@@ -49,7 +49,7 @@ mod tests {
         let example = LinkHtml::new(
             "example info".to_string(),
             "example url".to_string());
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "example info | example url", 
             example
@@ -58,7 +58,7 @@ mod tests {
         let example = LinkHtml::from(
             "example info | example url".to_string()
         );
-        let example: String = example.into();
+        let example: String = (&example).into();
         assert_eq!(
             "example info | example url", 
             example
