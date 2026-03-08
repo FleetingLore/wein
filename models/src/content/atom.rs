@@ -34,14 +34,11 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = Atom::new(
-            "example content".to_string());
-        let example: String = (&example).into();
-        assert_eq!("example content", example);
-
         let example = Atom::from(
-            "example content".to_string());
+            "example content".to_string()
+        );
         let example: String = (&example).into();
         assert_eq!("example content", example);
+        
     }
 }

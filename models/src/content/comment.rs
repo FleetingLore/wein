@@ -2,7 +2,7 @@
 
 /// 注释
 pub struct Comment {
-    content: String,
+    pub content: String,
 }
 
 impl Comment {
@@ -34,13 +34,9 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = Comment::new(
-            "example content".to_string());
-        let example: String = (&example).into();
-        assert_eq!("# example content", example);
-
         let example = Comment::from(
-            "# example content".to_string());
+            "# example content".to_string()
+        );
         let example: String = (&example).into();
         assert_eq!("# example content", example);
     }

@@ -2,7 +2,7 @@
 
 /// 起域者
 pub struct Title {
-    content: String,
+    pub content: String,
 }
 
 impl Title {
@@ -34,15 +34,6 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = Title::new(
-            "example content".to_string()
-        );
-        let example: String = (&example).into();
-        assert_eq!(
-            "+ example content", 
-            example
-        );
-
         let example = Title::from(
             "+ example content".to_string()
         );

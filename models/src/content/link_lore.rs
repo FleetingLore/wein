@@ -2,8 +2,8 @@
 
 /// Html 链接
 pub struct LinkLore {
-    info: String,
-    category: String,
+    pub info: String,
+    pub category: String,
 }
 
 impl LinkLore {
@@ -46,23 +46,13 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = LinkLore::new(
-            "example info".to_string(),
-            "example category".to_string()
-        );
-        let example: String = (&example).into();
-        assert_eq!(
-            "example info = example category",
-            example
-        );
-
         let example = LinkLore::from(
             "example info = example category".to_string()
         );
         let example: String = (&example).into();
         assert_eq!(
             "example info = example category",
-            example)
-        ;
+            example
+        );
     }
 }

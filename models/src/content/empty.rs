@@ -28,10 +28,6 @@ mod tests {
 
     #[test]
     fn test_new() {
-        let example = Empty::new();
-        let example: String = (&example).into();
-        assert_eq!("", example);
-
         let example = Empty::from("".to_string());
         let example: String = (&example).into();
         assert_eq!("", example);

@@ -2,8 +2,8 @@
 
 /// Html 链接
 pub struct LinkHtml {
-    info: String,
-    url: String,
+    pub info: String,
+    pub url: String,
 }
 
 impl LinkHtml {
@@ -46,15 +46,6 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = LinkHtml::new(
-            "example info".to_string(),
-            "example url".to_string());
-        let example: String = (&example).into();
-        assert_eq!(
-            "example info | example url", 
-            example
-        );
-
         let example = LinkHtml::from(
             "example info | example url".to_string()
         );

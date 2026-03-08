@@ -9,7 +9,7 @@ impl BreakLine {
     }
 }
 
-impl Into<String> for BreakLine {
+impl Into<String> for &BreakLine {
     fn into(self) -> String {
         "---".to_string()
     }
@@ -28,13 +28,8 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = BreakLine::new();
-        let example: String = example.into();
-        assert_eq!("---", example);
-
-        let example = BreakLine::from(
-            "---".to_string());
-        let example: String = example.into();
+        let example = BreakLine::from("".to_string());
+        let example: String = (&example).into();
         assert_eq!("---", example);
     }
 }

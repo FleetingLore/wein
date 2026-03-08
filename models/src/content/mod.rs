@@ -22,14 +22,23 @@ pub mod br;
 /// 空
 pub mod empty;
 
+pub use br::BreakLine;
+pub use atom::Atom;
+pub use comment::Comment;
+pub use empty::Empty;
+pub use link_html::LinkHtml;
+pub use link_lore::LinkLore;
+pub use link_md::LinkMd;
+pub use title::Title;
+
 pub enum LineContent {
-    Empty(empty::Empty),
-    BreakLine(br::BreakLine),
-    Atom(atom::Atom),
-    Title(title::Title),
-    Comment(comment::Comment),
-    LinkLore(link_lore::LinkLore),
-    LinkMd(link_md::LinkMd),
-    LinkHtml(link_html::LinkHtml),
+    Empty(Empty),
+    BreakLine(BreakLine),
+    Atom(Atom),
+    Title(Title),
+    Comment(Comment),
+    LinkLore(LinkLore),
+    LinkMd(LinkMd),
+    LinkHtml(LinkHtml),
     Default
 }

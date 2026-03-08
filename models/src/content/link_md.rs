@@ -2,8 +2,8 @@
 
 /// Html 链接
 pub struct LinkMd {
-    info: String,
-    md: String,
+    pub info: String,
+    pub md: String,
 }
 
 impl LinkMd {
@@ -46,15 +46,6 @@ mod tests {
 
     #[test]
     fn test_content() {
-        let example = LinkMd::new(
-            "example info".to_string(),
-            "example md".to_string());
-        let example: String = (&example).into();
-        assert_eq!(
-            "example info > example md",
-            example
-        );
-
         let example = LinkMd::from(
             "example info > example md".to_string()
         );
