@@ -2,20 +2,20 @@
 
 /// 注释
 pub struct Comment {
-    pub content: String,
+    pub comment: String,
 }
 
 impl Comment {
     pub fn new(content: String) -> Self {
         Self {
-            content
+            comment: content
         }
     }
 }
 
 impl Into<String> for &Comment {
     fn into(self) -> String {
-        format!("# {}", self.content)
+        format!("# {}", self.comment)
     }
 }
 
@@ -23,7 +23,7 @@ impl From<String> for Comment {
 
     fn from(raw: String) -> Self {
         Self{
-            content: raw[2..].to_string()
+            comment: raw[2..].to_string()
         }
     }
 }

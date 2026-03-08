@@ -1,20 +1,21 @@
-use models::content::LineContent;
 use models::domain::file::File;
 use models::domain::line::Line;
 use crate::line::{line_from_lore_to_html, line_from_text_to_lore};
 
-pub fn from_text_to_lore(name: String, raw: String) -> File {
+pub fn file_from_text_to_lore(name: String, raw: String) -> File {
     let mut lines: Vec<Line> = Vec::new();
+
     for line in raw.lines() {
         lines.push(line_from_text_to_lore(line));
     }
+
     File {
         name,
         lines
     }
 }
 
-pub fn from_lore_to_html(file: File) -> String {
+pub fn file_from_lore_to_html(file: File) -> String {
 
     let mut target: Vec<String> = Vec::new();
 
@@ -70,23 +71,17 @@ a:hover {
     let target= target.join("\n");
 
     format!(
-        r##"<html lang="zh-CN">"##
-        r##"  <head>"##
-        r##"    <meta charset="UTF-8">"##
-        r##"    <meta name="viewport" content="width=device-width, initial-scale=1.0">"##
-        r##"    <title>{}</title>"##
-        r##"<!-- style start -->"##
-        r##"{}"##
-        r##"<!-- style end -->"##
-        r##"  </head>"##
-        r##"  <body>"##
-        r##"    <main>"##
-        r##"<!-- lore start -->"##
-        r##"{}"##
-        r##"<!-- lore end -->"##
-        r##"    </main>"##
-        r##"  </body>"##
-        r##"</html>"##,
+        r#"<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{}</title>
+{}
+</head>
+<body><main>
+{}
+</main></body>
+</html>"#,
         file.name,
         style,
         target

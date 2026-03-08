@@ -2,20 +2,20 @@
 
 /// 余项
 pub struct Atom {
-    content: String,
+    pub atom: String,
 }
 
 impl Atom {
     pub fn new(content: String) -> Self {
         Self {
-            content
+            atom: content
         }
     }
 }
 
 impl Into<String> for &Atom {
     fn into(self) -> String {
-        self.content.clone()
+        self.atom.clone()
     }
 }
 
@@ -23,7 +23,7 @@ impl From<String> for Atom {
 
     fn from(raw: String) -> Self {
         Self {
-            content: raw.to_string()
+            atom: raw.to_string()
         }
     }
 }

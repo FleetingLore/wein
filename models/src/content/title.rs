@@ -2,20 +2,20 @@
 
 /// 起域者
 pub struct Title {
-    pub content: String,
+    pub title: String,
 }
 
 impl Title {
     pub fn new(content: String) -> Self {
         Self {
-            content
+            title: content
         }
     }
 }
 
 impl Into<String> for &Title {
     fn into(self) -> String {
-        format!("+ {}", self.content)
+        format!("+ {}", self.title)
     }
 }
 
@@ -23,7 +23,7 @@ impl From<String> for Title  {
 
     fn from(raw: String) -> Self {
         Self{
-            content: raw[2..].to_string()
+            title: raw[2..].to_string()
         }
     }
 }

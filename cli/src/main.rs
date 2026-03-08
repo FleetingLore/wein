@@ -1,34 +1,16 @@
-use std::io;
-
 fn main() {
-    println!(
-        r##"\
-        <p style="margin-left: 0rem">\
-        <a href="#" class="link-lore" data-path="0">\
-        0\
-        </a>\
-        </p>"##);
-    // let mut mode: String = "html".to_string();
-    let mut from: String = "".to_string();
-    let mut to: String = "".to_string();
-
-    // println!("Select mode (html): ");
-    // io::stdin().read_line(&mut mode).expect("Failed to read line");
-
-    println!("from: ");
-    io::stdin()
-        .read_line(&mut from)
-        .expect("Failed to read line");
-    let from: String = from.trim().parse().expect("Failed to parse");
+    use parser::file::file_from_text_to_lore;
+    use parser::file::file_from_lore_to_html;
+    let example = "
++ tests
+  baidu | https://www.baidu.com
+  ok
+  + 二级领域
+    + 三级领域
+      + 四级领域
+        aaa".to_string();
     
-    println!("to: ");
-    io::stdin()
-        .read_line(&mut to)
-        .expect("Failed to read line");
-    let to: String = to.trim().parse().expect("Failed to parse");
-    
-    // TODO
-
-    println!();
-    println!("from {} to {}", from, to);
+    let lore = file_from_text_to_lore("Example".to_string(), example);
+    let html = file_from_lore_to_html(lore);
+    println!("{}", html);
 }
