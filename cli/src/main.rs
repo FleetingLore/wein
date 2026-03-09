@@ -17,15 +17,7 @@ fn process_lore_file(src: &Path, dst: &Path) -> io::Result<()> {
     // 3. 转换为 HTML
     let html_content = file_from_lore_to_html(lore_data);
 
-    // 4. 读取 CSS 样式（样式文件固定位置）
-    let style_path = Path::new("static/css/style.css");
-    let style = if style_path.exists() {
-        fs::read_to_string(style_path)?
-    } else {
-        String::new() // 如果没有样式文件就用空字符串
-    };
-
-    // 5. 生成完整 HTML
+    // 4. 生成完整 HTML
     let file_name = src
         .file_stem()
         .unwrap_or_default()
@@ -33,7 +25,6 @@ fn process_lore_file(src: &Path, dst: &Path) -> io::Result<()> {
         .to_string();
     let final_html: String = LoreHtml::new(
         file_name,
-        style,
         html_content
     ).into();
 
@@ -98,7 +89,7 @@ fn main() -> io::Result<()> {
         src_dir,
         dst_dir
     ) = (
-        Path::new("static/lore"),
+        Path::new("static"),
         Path::new("docs")
     );
 
