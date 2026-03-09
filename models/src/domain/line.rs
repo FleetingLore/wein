@@ -12,16 +12,15 @@ impl std::fmt::Display for Line {
             "{}{}",
             "  ".repeat(self.indent),
             {
-                let content = match &self.content {
+                let content: String = match &self.content {
                     LineContent::Empty(line) => line.into(),
                     LineContent::BreakLine(line) => line.into(),
-                    LineContent::Atom(line) => line.into(),
                     LineContent::Comment(line) => line.into(),
                     LineContent::Title(line) => line.into(),
                     LineContent::LinkLore(line) => line.into(),
                     LineContent::LinkMd(line) => line.into(),
                     LineContent::LinkHtml(line) => line.into(),
-                    LineContent::Default => "".to_string(),
+                    LineContent::Atom(line) => line.into()
                 };
                 content
             }

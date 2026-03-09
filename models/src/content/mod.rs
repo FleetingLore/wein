@@ -34,11 +34,10 @@ pub use title::Title;
 pub enum LineContent {
     Empty(Empty),
     BreakLine(BreakLine),
-    Atom(Atom),
     Title(Title),
     Comment(Comment),
     LinkLore(LinkLore),
     LinkMd(LinkMd),
     LinkHtml(LinkHtml),
-    Default
+    Atom(Atom)
 }

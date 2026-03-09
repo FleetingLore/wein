@@ -61,7 +61,11 @@ pub fn line_from_text_to_lore(raw: &str) -> Line {
             }
         )
     } else {
-        LineContent::Default
+        LineContent::Atom(
+            Atom {
+                atom: raw.to_string(),
+            }
+        )
     };
 
     // 返回数据对象
@@ -77,17 +81,8 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
     match lore.content {
         LineContent::Empty(Empty) => "".to_string(),
         LineContent::BreakLine(BreakLine) => "<br>".to_string(),
-        LineContent::Atom(content) => {
-            println!("{}", lore.indent);
-            format!(
-                r#"<p style="margin-left: {}rem"><p>{}</p></p>"#,
-                lore.indent,
-                content.atom
-            )
-        },
 
         LineContent::Title(content) => {
-            println!("{}", lore.indent);
             format!(
                 r#"<p style="margin-left: {}rem"><strong>{}</strong></p>"#,
                 lore.indent,
@@ -96,8 +91,6 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
         },
 
         LineContent::Comment(content) => {
-            println!("{}", lore.indent);
-
             format!(
                 "<!-- {} -->",
                 content.comment
@@ -105,8 +98,6 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
         },
 
         LineContent::LinkLore(content) => {
-            println!("{}", lore.indent);
-
             format!(
                 r#"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"#,
                 lore.indent,
@@ -116,8 +107,6 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
         },
 
         LineContent::LinkMd(content) => {
-            println!("{}", lore.indent);
-
             format!(
                 r#"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"#,
                 lore.indent,
@@ -127,8 +116,6 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
         },
 
         LineContent::LinkHtml(content) => {
-            println!("{}", lore.indent);
-
             format!(
                 r##"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"##,
                 lore.indent,
@@ -136,7 +123,12 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.info
             )
         },
-
-        LineContent::Default => "".to_string()
+        LineContent::Atom(content) => {
+            format!(
+                r#"<p style="margin-left: {}rem">{}</p>"#,
+                lore.indent,
+                content.atom
+            )
+        }
     }
 }
