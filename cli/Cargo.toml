@@ -7,3 +7,5 @@ edition = "2024"
 models = { path = "../models" }
 parser = { path = "../parser" }
 html = { path = "../html" }
+toml = "1.0.6"
+serde = { version = "1.0.228", features = ["derive"] }
