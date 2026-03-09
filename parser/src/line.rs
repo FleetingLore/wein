@@ -99,7 +99,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
 
         LineContent::LinkLore(content) => {
             format!(
-                r#"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"#,
+                r#"<p style="margin-left: {}rem"><a href="https://fleetinglore.github.io/{}.html">{}</a></p>"#,
                 lore.indent,
                 content.category,
                 content.info
@@ -108,7 +108,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
 
         LineContent::LinkMd(content) => {
             format!(
-                r#"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"#,
+                r#"<p style="margin-left: {}rem"><a href="https://fleetinglore.github.io/{}">{}</a></p>"#,
                 lore.indent,
                 content.md,
                 content.info
