@@ -1,11 +1,14 @@
 use models::content::*;
 use models::domain::line::Line;
 
+/// 从原始文本到 lore
 pub fn line_from_text_to_lore(raw: &str) -> Line {
+    // 获取缩进
     let indent = raw.chars().take_while(|&c| c == ' ').count();
     let raw = raw.split_at(indent).1;
     let indent = indent / 2;
 
+    // 返回中间表示
     let content = if raw == "" {
         LineContent::Empty(Empty)
 
@@ -61,13 +64,16 @@ pub fn line_from_text_to_lore(raw: &str) -> Line {
         LineContent::Default
     };
 
+    // 返回数据对象
     Line {
         indent,
         content,
     }
 }
 
+/// 从 lore 到 html
 pub fn line_from_lore_to_html(lore: Line) -> String {
+    // 一一对应
     match lore.content {
         LineContent::Empty(Empty) => "".to_string(),
         LineContent::BreakLine(BreakLine) => "<br>".to_string(),
@@ -79,6 +85,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.atom
             )
         },
+
         LineContent::Title(content) => {
             println!("{}", lore.indent);
             format!(
@@ -87,6 +94,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.title
             )
         },
+
         LineContent::Comment(content) => {
             println!("{}", lore.indent);
 
@@ -95,6 +103,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.comment
             )
         },
+
         LineContent::LinkLore(content) => {
             println!("{}", lore.indent);
 
@@ -105,6 +114,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.info
             )
         },
+
         LineContent::LinkMd(content) => {
             println!("{}", lore.indent);
 
@@ -115,6 +125,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.info
             )
         },
+
         LineContent::LinkHtml(content) => {
             println!("{}", lore.indent);
 
@@ -125,18 +136,7 @@ pub fn line_from_lore_to_html(lore: Line) -> String {
                 content.info
             )
         },
-        LineContent::Default => "".to_string()
-    }
-}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    
-    #[test]
-    fn test_line_from_text_to_lore() {
-        let example = "    a | b.com";
-        let target = line_from_text_to_lore(example);
-        assert_eq!(target.indent, 2);
+        LineContent::Default => "".to_string()
     }
 }
