@@ -5,3 +5,9 @@ edition = "2024"
 
 [dependencies]
 models = { path = "../models" }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = "symbols"
