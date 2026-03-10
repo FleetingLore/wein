@@ -1,7 +1,6 @@
 use models::content::*;
 use models::domain::line::Line;
 
-/// 从原始文本到 lore
 pub fn line_from_text_to_lore(raw: &str) -> Line {
     // 获取缩进
     let indent = raw.chars().take_while(|&c| c == ' ').count();
@@ -75,60 +74,72 @@ pub fn line_from_text_to_lore(raw: &str) -> Line {
     }
 }
 
-/// 从 lore 到 html
-pub fn line_from_lore_to_html(lore: Line) -> String {
-    // 一一对应
-    match lore.content {
-        LineContent::Empty(Empty) => "".to_string(),
-        LineContent::BreakLine(BreakLine) => "<br>".to_string(),
+pub fn from_break_line_to_html() -> String {
+    "<br>".to_string()
+}
 
-        LineContent::Title(content) => {
-            format!(
-                r#"<p style="margin-left: {}rem"><strong>{}</strong></p>"#,
-                lore.indent,
-                content.title
-            )
-        },
+pub fn from_title_to_html(indent: usize, title: String) -> String {
+    format!(
+        r#"<p style="margin-left: {}rem"><strong>{}</strong></p>"#,
+        indent,
+        title
+    )
+}
 
-        LineContent::Comment(content) => {
-            format!(
-                "<!-- {} -->",
-                content.comment
-            )
-        },
+pub fn from_comment_to_html(comment: String) -> String {
+    format!(
+        "<!-- {} -->",
+        comment
+    )
+}
 
-        LineContent::LinkLore(content) => {
-            format!(
-                r#"<p style="margin-left: {}rem"><a href="https://fleetinglore.github.io/{}.html">{}</a></p>"#,
-                lore.indent,
-                content.category,
-                content.info
-            )
-        },
+pub fn from_link_lore_to_html(
+    indent: usize,
+    info: String,
+    category: String,
+    base: &str
+) -> String {
+    format!(
+        r#"<p style="margin-left: {}rem"><a href="{}/{}.html">{}</a></p>"#,
+        indent,
+        base,
+        category,
+        info
+    )
+}
 
-        LineContent::LinkMd(content) => {
-            format!(
-                r#"<p style="margin-left: {}rem"><a href="https://fleetinglore.github.io/{}">{}</a></p>"#,
-                lore.indent,
-                content.md,
-                content.info
-            )
-        },
+pub fn from_link_md_to_html(
+    indent: usize,
+    info: String,
+    md: String,
+    base: &str
+) -> String {
+    format!(
+        r#"<p style="margin-left: {}rem"><a href="{}/{}">{}</a></p>"#,
+        indent,
+        base,
+        md,
+        info
+    )
+}
 
-        LineContent::LinkHtml(content) => {
-            format!(
-                r##"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"##,
-                lore.indent,
-                content.url,
-                content.info
-            )
-        },
-        LineContent::Atom(content) => {
-            format!(
-                r#"<p style="margin-left: {}rem">{}</p>"#,
-                lore.indent,
-                content.atom
-            )
-        }
-    }
+pub fn from_link_html_to_html(
+    indent: usize,
+    info: String,
+    url: String
+) -> String {
+    format!(
+        r##"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"##,
+        indent,
+        url,
+        info
+    )
+}
+
+pub fn from_atom_to_html(indent: usize, atom: String) -> String {
+    format!(
+        r#"<p style="margin-left: {}rem">{}</p>"#,
+        indent,
+        atom
+    )
 }

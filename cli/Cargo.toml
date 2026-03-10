@@ -10,3 +10,5 @@ path = "src/main.rs"
 [dependencies]
 parser = { path = "../parser" }
 html = { path = "../html" }
+toml = "1.0.6"
+serde = { version = "1.0.228", features = ["derive"] }
