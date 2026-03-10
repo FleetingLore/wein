@@ -123,7 +123,7 @@ pub fn from_link_md_to_html(
     base: &str
 ) -> String {
     format!(
-        r#"<p style="margin-left: {}rem"><a href="{}/{}" class="link_lore">{}</a></p>"#,
+        r#"<p style="margin-left: {}rem"><a href="{}/{}" class="link_md">{}</a></p>"#,
         indent,
         base,
         md,
