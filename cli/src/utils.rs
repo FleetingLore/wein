@@ -4,7 +4,7 @@ use html::LoreHtml;
 use parser::file::{file_from_lore_to_html, file_from_text_to_lore};
 
 /// 处理单个文件：从 .lore 文件生成 .html 文件
-fn process_lore_file(src: &Path, dst: &Path, base: &str) -> io::Result<()> {
+fn process_lore_file(src: &Path, dst: &Path, base: &str, css: &str) -> io::Result<()> {
     println!("处理文件: {:?}", src);
 
     // 1. 读取 .lore 文件
@@ -25,6 +25,7 @@ fn process_lore_file(src: &Path, dst: &Path, base: &str) -> io::Result<()> {
     let final_html: String = LoreHtml::new(
         file_name,
         base.to_string(),
+        css.to_string(),
         html_content
     ).into();
 
@@ -53,7 +54,7 @@ fn get_relative_path(full_path: &Path, base: &Path) -> PathBuf {
 }
 
 /// 主函数：遍历目录并处理所有 .lore 文件
-pub fn map_lore_files(src_dir: &Path, dst_dir: &Path, base: &str) -> io::Result<()> {
+pub fn map_lore_files(src_dir: &Path, dst_dir: &Path, base: &str, css: &str) -> io::Result<()> {
     ensure_dir(dst_dir)?;
 
     for entry in fs::read_dir(src_dir)? {
@@ -66,7 +67,7 @@ pub fn map_lore_files(src_dir: &Path, dst_dir: &Path, base: &str) -> io::Result<
             let rel_path = get_relative_path(&src_path, src_dir);
             let dst_path = dst_dir
                 .join(rel_path);
-            map_lore_files(&src_path, &dst_path, base)?;
+            map_lore_files(&src_path, &dst_path, base, css)?;
         } else {
             // 只处理 .lore 文件
             if src_path
@@ -76,7 +77,7 @@ pub fn map_lore_files(src_dir: &Path, dst_dir: &Path, base: &str) -> io::Result<
                 let rel_path = get_relative_path(&src_path, src_dir);
                 let dst_path = dst_dir.join(rel_path);
                 ensure_dir(dst_path.parent().unwrap())?;
-                process_lore_file(&src_path, &dst_path, base)?;
+                process_lore_file(&src_path, &dst_path, base, css)?;
             }
         }
     }

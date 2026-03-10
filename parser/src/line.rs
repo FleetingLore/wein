@@ -78,9 +78,17 @@ pub fn from_break_line_to_html() -> String {
     "<br>".to_string()
 }
 
+pub fn from_atom_to_html(indent: usize, atom: String) -> String {
+    format!(
+        r#"<p style="margin-left: {}rem" class="atom">{}</p>"#,
+        indent,
+        atom
+    )
+}
+
 pub fn from_title_to_html(indent: usize, title: String) -> String {
     format!(
-        r#"<p style="margin-left: {}rem"><strong>{}</strong></p>"#,
+        r#"<p style="margin-left: {}rem" class="title">{}</p>"#,
         indent,
         title
     )
@@ -100,7 +108,7 @@ pub fn from_link_lore_to_html(
     base: &str
 ) -> String {
     format!(
-        r#"<p style="margin-left: {}rem"><a href="{}/{}.html">{}</a></p>"#,
+        r#"<p style="margin-left: {}rem"><a href="{}/index/{}.html" class="link_lore">{}</a></p>"#,
         indent,
         base,
         category,
@@ -115,7 +123,7 @@ pub fn from_link_md_to_html(
     base: &str
 ) -> String {
     format!(
-        r#"<p style="margin-left: {}rem"><a href="{}/{}">{}</a></p>"#,
+        r#"<p style="margin-left: {}rem"><a href="{}/{}" class="link_lore">{}</a></p>"#,
         indent,
         base,
         md,
@@ -129,17 +137,9 @@ pub fn from_link_html_to_html(
     url: String
 ) -> String {
     format!(
-        r##"<p style="margin-left: {}rem"><a href="{}">{}</a></p>"##,
+        r##"<p style="margin-left: {}rem"><a href="{}" class="link_html">{}</a></p>"##,
         indent,
         url,
         info
-    )
-}
-
-pub fn from_atom_to_html(indent: usize, atom: String) -> String {
-    format!(
-        r#"<p style="margin-left: {}rem">{}</p>"#,
-        indent,
-        atom
     )
 }

@@ -11,7 +11,7 @@ fn main() -> io::Result<()> {
     let src_dir = Path::new(config.from_lore.as_str());
     let dst_dir = Path::new(config.to_html.as_str());
 
-    map_lore_files(src_dir, dst_dir, &config.base)?;
+    map_lore_files(src_dir, dst_dir, &config.base, &config.css)?;
 
     println!("done.");
     Ok(())

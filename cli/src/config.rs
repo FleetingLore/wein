@@ -5,6 +5,7 @@ use serde::Deserialize;
 #[derive(Deserialize)]
 pub struct Config {
     pub base: String,
+    pub css: String,
     pub from_lore: String,
     pub to_html: String,
 }
